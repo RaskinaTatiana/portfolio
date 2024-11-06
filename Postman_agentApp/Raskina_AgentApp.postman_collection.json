@@ -1,0 +1,1080 @@
+{
+	"info": {
+		"_postman_id": "a8221479-55d2-4bd6-84b2-3e98bd179288",
+		"name": "Raskina_AgentApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33255334",
+		"_collection_link": "https://stream-1373.postman.co/workspace/My-workspace~975d0251-4edc-4b58-8e97-1959321b185f/collection/33255334-a8221479-55d2-4bd6-84b2-3e98bd179288?action=share&source=collection_link&creator=33255334"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();",
+							"const token = response.token; ",
+							"",
+							"pm.environment.set(\"token\", token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "baggage",
+						"value": "sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true"
+					},
+					{
+						"key": "sentry-trace",
+						"value": "cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"qa@qa.qa\",\n    \"password\": \"111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/users/obtain-token",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"users",
+						"obtain-token"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "driver creation 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save Driver ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"driver_ID_1\", jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"Сергеев\",\n  \"last_name\": \"Сергей\",\n  \"patronymic\": \"Сергеевич\",\n  \"birth_date\": \"1990-01-01\",\n  \"driving_experience_started\": \"2010-10-10\",\n  \"driver_licenses\": [\n    {\n      \"credential_type\": \"DRIVER_LICENSE\",\n      \"number\": \"012345\",\n      \"series\": \"1234\",\n      \"issue_date\": \"2010-10-10\"\n    }\n  ]\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/drivers",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						"drivers"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "driver creation 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save Second Driver ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"driver_ID_2\", jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"Петров\",\n  \"last_name\": \"Петр\",\n  \"patronymic\": \"Петрович\",\n  \"birth_date\": \"1985-12-12\",\n  \"driving_experience_started\": \"2010-12-12\",\n  \"driver_licenses\": [\n    {\n      \"credential_type\": \"DRIVER_LICENSE\",\n      \"number\": \"123456\",\n      \"series\": \"1233\",\n      \"issue_date\": \"2010-12-12\"\n    }\n  ]\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/drivers",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						"drivers"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "owner creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save owner person id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"owner_ID\", jsonData.person);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"last_name\": \"Сергеев\",\n  \"first_name\": \"Сергей\",\n  \"patronymic\": \"Сергеевич\",\n  \"birth_date\": \"1990-01-01\",\n  \"credential\": [\n    {\n      \"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\n      \"issue_date\": \"2017-03-08\",\n      \"issue_point\": \"УФМС\",\n      \"issue_point_code\": \"123-456\",\n      \"number\": \"012345\",\n      \"series\": \"1234\"\n    }\n  ],\n  \"address\": [\n    {\n      \"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 1 к 1, кв 1\",\n      \"address_type\": \"LEGAL_ADDRESS\",\n      \"region_kladr_id\": \"7800000000000\",\n      \"city_kladr_id\": \"7800000600000\"\n    },\n    {\n      \"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 1 к 1, кв 1\",\n      \"address_type\": \"ACTUAL_ADDRESS\",\n      \"region_kladr_id\": \"7800000000000\",\n      \"city_kladr_id\": \"7800000600000\"\n    }\n  ]\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/owners/natural_persons",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						"owners",
+						"natural_persons"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "insurer creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save insurants person id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"insurant_ID\", jsonData.person);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"last_name\": \"Иванов\",\n    \"first_name\": \"Иван\",\n    \"patronymic\": \"Иванович\",\n    \"birth_date\": \"1990-01-01\",\n    \"credential\": [\n        {\n            \"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\n            \"issue_date\": \"2010-10-10\",\n            \"issue_point\": \"УФМС\",\n            \"issue_point_code\": \"123-456\",\n            \"number\": \"123456\",\n            \"series\": \"1234\"\n        }\n    ],\n    \"address\": [\n        {\n            \"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 1 к 1, кв 1\",\n            \"address_type\": \"LEGAL_ADDRESS\",\n            \"region_kladr_id\": \"7800000000000\",\n            \"city_kladr_id\": \"7800000600000\"\n        },\n        {\n            \"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 1 к 1, кв 1\",\n            \"address_type\": \"ACTUAL_ADDRESS\",\n            \"region_kladr_id\": \"7800000000000\",\n            \"city_kladr_id\": \"7800000600000\"\n        }\n    ],\n    \"contact\": [\n        {\n            \"contact_type\": \"EMAIL\",\n            \"data\": \"test12345@gmail.com\",\n            \"comment\": null\n        },\n        {\n            \"contact_type\": \"PHONE\",\n            \"data\": \"+7 (950) 606-26-59\",\n            \"comment\": null\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/insured_objects/insurants/natural_persons",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						"insurants",
+						"natural_persons"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "car creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save cars id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"car_ID\", jsonData.id);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"car_model_id\": 864026180,\n  \"engine_power\": 211,\n  \"chassis_number\": \"222\",\n  \"car_body_number\": \"333\",\n  \"vin_number\": \"WAUZZZ8T4BA037241\",\n  \"number_plate\": \"Р904МХ178\",\n  \"manufacturing_year\": \"2010\",\n  \"max_mass\": 4444,\n  \"credential\": [\n    {\n      \"credential_type\": \"VEHICLE_REGISTRATION\",\n      \"issue_date\": \"2010-11-01\",\n      \"number\": \"267461\",\n      \"series\": \"78УН\"\n    }\n  ]\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v3/insured_objects/cars",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v3",
+						"insured_objects",
+						"cars"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "insured object creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save insured object ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"insured_object_id\", jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"drivers\": [\n    \"{{driver_ID_1}}\", \"{{driver_ID_2}}\"\n  ],\n  \"owner\": \"{{owner_ID}}\",\n  \"car\": \"{{car_ID}}\",\n  \"insurant\": \"{{insurant_ID}}\"\n} \n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/insured_objects/",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "contract creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save agreement id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"agreement_id\", jsonData.id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"valid_from\": \"2024-11-06\",\n  \"valid_to\": \"2025-11-05\",\n  \"periods\": [],\n  \"insurance_period\": 8, \n  \"target_of_using\": 11,\n  \"drivers_ids\": [\n    \"{{driver_ID_1}}\", \n    \"{{driver_ID_2}}\"\n  ],\n  \"is_car_without_registration\": true,\n  \"engine_power\": 211,\n  \"has_car_trailer\": false,\n  \"car_type\": \"B\",\n  \"owner_registration\": \n { \n    \"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 1 к 1, кв 1\",\n    \"address_type\": \"LEGAL_ADDRESS\",\n    \"region_kladr_id\": \"7800000000000\",\n    \"city_kladr_id\": \"7800000600000\"\n }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v3/agreements/calculations",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v3",
+						"agreements",
+						"calculations"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "contract update",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"insured_object\": \n    \"{{insured_object_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}v3/agreements/{{agreement_id}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}v3"
+					],
+					"path": [
+						"agreements",
+						"{{agreement_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/users/obtain-token' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Referer: https://partner.agentapp.ru/' \\\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'baggage: sentry-environment=production,sentry-release=master.ps.24.10.4,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=cc3c7305df32402a9b54061aff7540f6,sentry-sample_rate=0.5,sentry-sampled=true' \\\n  -H 'sentry-trace: cc3c7305df32402a9b54061aff7540f6-ab4e43dc57007704-1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\n  -H 'Accept: application/json, text/plain, */*' \\\n  -H 'Content-Type: application/json' \\\n  --data-raw '{\"username\":\"qa@qa.qa\",\"password\":\"111\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "recalculate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "baggage",
+						"value": "sentry-environment=production,sentry-release=master.ps.24.10.5,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=1d726996c9b94ab082433dffefdd7ec1,sentry-sample_rate=0.5,sentry-sampled=true"
+					},
+					{
+						"key": "sentry-trace",
+						"value": "1d726996c9b94ab082433dffefdd7ec1-8f5cc1ae979a1924-1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"has_car_trailer\": false,\n    \"car_type\": \"B\",\n    \"drivers_ids\": [],\n    \"engine_power\": 211,\n    \"insurance_period\": 8,\n    \"insured_object\": \"{{insured_object_id}}\",\n    \"owner_registration\": {\n        \"address_query\": \"198412, г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 1 к 1, кв. 1\",\n        \"area\": null,\n        \"area_fias_id\": null,\n        \"area_kladr_id\": null,\n        \"area_with_type\": null,\n        \"block\": \"1\",\n        \"block_type\": \"к\",\n        \"city\": \"Ломоносов\",\n        \"city_district\": null,\n        \"city_district_fias_id\": null,\n        \"city_district_kladr_id\": null,\n        \"city_district_type\": null,\n        \"city_district_type_full\": null,\n        \"city_district_with_type\": null,\n        \"city_fias_id\": \"3c2827f3-63f3-4692-8c74-c1318ee524fd\",\n        \"city_kladr_id\": \"7800000600000\",\n        \"city_with_type\": \"г Ломоносов\",\n        \"country\": \"Россия\",\n        \"fias_code\": \"7800000600000000117\",\n        \"fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\n        \"fias_level\": \"7\",\n        \"flat\": \"1\",\n        \"flat_type\": \"кв\",\n        \"house\": \"1\",\n        \"house_fias_id\": \"8b6d2de7-eb1e-4fab-98ba-cc0c2dd16f9c\",\n        \"house_kladr_id\": \"7800000600001170001\",\n        \"house_type\": \"д\",\n        \"kladr_id\": \"78000006000011700\",\n        \"okato\": \"40290502000\",\n        \"postal_code\": \"198412\",\n        \"region\": \"Санкт-Петербург\",\n        \"region_fias_id\": \"c2deb16a-0330-4f05-821f-1d09c93331e6\",\n        \"region_kladr_id\": \"7800000000000\",\n        \"region_with_type\": \"г Санкт-Петербург\",\n        \"settlement\": null,\n        \"settlement_fias_id\": null,\n        \"settlement_kladr_id\": null,\n        \"settlement_with_type\": null,\n        \"street\": \"Швейцарская\",\n        \"street_fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\n        \"street_kladr_id\": \"78000006000011700\",\n        \"street_with_type\": \"ул Швейцарская\",\n        \"address_type\": \"LEGAL_ADDRESS\",\n        \"data\": {\n            \"address_query\": \"198412, Российская Федерация, г Санкт-Петербург, г Ломоносов, ул Швейцарская, д. 1, к. 1, кв. 1\",\n            \"area\": null,\n            \"area_fias_id\": null,\n            \"area_kladr_id\": null,\n            \"area_with_type\": null,\n            \"block\": \"1\",\n            \"block_type\": \"к\",\n            \"city\": \"Ломоносов\",\n            \"city_district\": null,\n            \"city_district_fias_id\": null,\n            \"city_district_kladr_id\": null,\n            \"city_district_type\": null,\n            \"city_district_type_full\": null,\n            \"city_district_with_type\": null,\n            \"city_fias_id\": \"3c2827f3-63f3-4692-8c74-c1318ee524fd\",\n            \"city_kladr_id\": \"7800000600000\",\n            \"city_with_type\": \"г Ломоносов\",\n            \"country\": \"Россия\",\n            \"fias_code\": \"7800000600000000117\",\n            \"fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\n            \"fias_level\": \"7\",\n            \"flat\": \"1\",\n            \"flat_type\": \"кв\",\n            \"house\": \"1\",\n            \"house_fias_id\": \"8b6d2de7-eb1e-4fab-98ba-cc0c2dd16f9c\",\n            \"house_kladr_id\": \"7800000600001170001\",\n            \"house_type\": \"д\",\n            \"kladr_id\": \"78000006000011700\",\n            \"okato\": \"40290502000\",\n            \"postal_code\": \"198412\",\n            \"region\": \"Санкт-Петербург\",\n            \"region_fias_id\": \"c2deb16a-0330-4f05-821f-1d09c93331e6\",\n            \"region_kladr_id\": \"7800000000000\",\n            \"region_with_type\": \"г Санкт-Петербург\",\n            \"settlement\": null,\n            \"settlement_fias_id\": null,\n            \"settlement_kladr_id\": null,\n            \"settlement_with_type\": null,\n            \"street\": \"Швейцарская\",\n            \"street_fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\n            \"street_kladr_id\": \"78000006000011700\",\n            \"street_with_type\": \"ул Швейцарская\"\n        },\n        \"is_without_flat\": false\n    },\n    \"target_of_using\": 11,\n    \"valid_from\": \"2024-11-06\",\n    \"valid_to\": \"2025-11-05\",\n    \"is_car_without_registration\": false,\n    \"with_ic_calculation\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v2/agreements/{{agreement_id}}/recalculate",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v2",
+						"agreements",
+						"{{agreement_id}}",
+						"recalculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate_agrement",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "baggage",
+						"value": "sentry-environment=production,sentry-release=master.ps.24.10.5,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=1d726996c9b94ab082433dffefdd7ec1,sentry-sample_rate=0.5,sentry-sampled=true"
+					},
+					{
+						"key": "sentry-trace",
+						"value": "1d726996c9b94ab082433dffefdd7ec1-8f5cc1ae979a1924-1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreement_id}}/validate",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements",
+						"{{agreement_id}}",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_result",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save task id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"task_id\", jsonData[0].id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "baggage",
+						"value": "sentry-environment=production,sentry-release=master.ps.24.10.5,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=1d726996c9b94ab082433dffefdd7ec1,sentry-sample_rate=0.5,sentry-sampled=true"
+					},
+					{
+						"key": "sentry-trace",
+						"value": "1d726996c9b94ab082433dffefdd7ec1-8f5cc1ae979a1924-1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"agency_code\": \"TEST_COMPANY_1\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v4/agreements/{{agreement_id}}/results/bulk-get-result",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v4",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"bulk-get-result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bulk-check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Save chain id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"chain_id\", jsonData[0].result_parameters.chain_id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "baggage",
+						"value": "sentry-environment=production,sentry-release=master.ps.24.10.5,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=1d726996c9b94ab082433dffefdd7ec1,sentry-sample_rate=0.5,sentry-sampled=true"
+					},
+					{
+						"key": "sentry-trace",
+						"value": "1d726996c9b94ab082433dffefdd7ec1-8f5cc1ae979a1924-1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_ids\": [\n        \"{{task_id}}\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v4/agreements/{{agreement_id}}/results/bulk-check",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v4",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"bulk-check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 9ca803a7fee933a50a8d465af827ea75bb660dd4"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "baggage",
+						"value": "sentry-environment=production,sentry-release=master.ps.24.10.5,sentry-public_key=e29238c65deb4fa5aa004555aaeadda6,sentry-trace_id=1d726996c9b94ab082433dffefdd7ec1,sentry-sample_rate=0.5,sentry-sampled=true"
+					},
+					{
+						"key": "sentry-trace",
+						"value": "1d726996c9b94ab082433dffefdd7ec1-8f5cc1ae979a1924-1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v4/agreements/{{agreement_id}}/results/TEST_COMPANY_1/buy/{{chain_id}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v4",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"TEST_COMPANY_1",
+						"buy",
+						"{{chain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/v3/agreements/062c7c04-df3d-46d5-be84-360ccfad8f00/results/test-payment-page"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/v3/agreements/{{agreement_id}}/results/set-test-payment",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v3",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"set-test-payment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
