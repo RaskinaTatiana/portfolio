@@ -3,13 +3,28 @@
 
 
 
+аблица - user		
+id	user_name	level_id	skill					
+1	Anton	1	900000					
+2	Denis	3	4000					
+3	Petr	2	50000					
+4	Andrey	4	20													
+5	Olga	1	600000													
+6	Anna	1	1600000	
 
 
 
 
 
 
-
+аблица - user		
+id	user_name	level_id	skill					
+1	Anton	1	900000					
+2	Denis	3	4000					
+3	Petr	2	50000					
+4	Andrey	4	20													
+5	Olga	1	600000													
+6	Anna	1	1600000	
 
 
 
